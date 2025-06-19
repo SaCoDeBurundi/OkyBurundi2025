@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "packages/api"
+    },
+    {
+      "path": "packages/cms"
+    },
+    {
+      "path": "packages/core"
+    },
+    {
+      "path": "app"
+    },
+    {
+      "path": "app/src/resources"
+    },
+    {
+      "path": "./"
+    }
+  ],
+  "settings": {}
+}

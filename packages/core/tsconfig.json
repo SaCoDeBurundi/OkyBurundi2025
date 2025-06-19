@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "allowJs": false,
+    "composite": true,
+    "declaration": true,
+    "noEmit": false,
+    "outDir": "dist/",
+    "rootDir": "src",
+    "typeRoots": ["../../node_modules/@types"]
+  },
+  "exclude": [
+    "**/*.test.ts", // Exclude test files
+    "dist/" // Exclude output folder
+  ]
+}

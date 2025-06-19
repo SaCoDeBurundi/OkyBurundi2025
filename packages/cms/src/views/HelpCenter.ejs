@@ -1,0 +1,68 @@
+<%- include('partials/Header') %> 
+<%- include('modals/HelpCenterModal')%>
+<div class="homePageContainer" id="helpCenterSection">
+  <div class="sideBar">
+    <%- include('partials/SideTab') %> 
+  </div>
+  <div class="mainContentContainer">
+    <div class="homeTopTextContainer">
+      <h2><%= __('Help centers')%></h2>
+      <!-- <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#helpCenterModalImport"
+        data-value="0"
+      >
+      <i class="fa-solid fa-upload"></i>
+      <%= __('Bulk import/export')%>
+      </button> -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#helpCenterModal"
+        data-value="0"
+      >
+      <%= __('Add Help Center')%>
+      </button>
+    </div>
+    
+    <div class="helpCenterContainer">
+        <table id="helpCenterTable" class="table">
+        <thead>
+            <tr>
+                <th id="order"><%= __('Order')%></th>
+                <th><%= __('Provider Name')%></th>
+                <th ><%= __('Caption')%></th>
+                <th ><%= __('Contact')%> 1</th>
+                <th ><%= __('Contact')%> 2</th>
+                <th ><%= __('Address')%></th>
+                <th><%= __('Region')%></th>
+                <th><%= __('Subregion')%></th>
+                <th><%= __('Website')%></th>
+                <th><%= __('Actions')%></th>
+                <th><%= __('Live')%></th>
+            </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <span id="localeJSON" hidden>
+    { "locale": "<%= currentUser?.lang %>"}
+  </span>
+  <span id="helpCentersJSON" hidden>
+    <%= JSON.stringify(helpCenters); %>
+  </span>
+  <span id="regionsJSON" hidden>
+    <%= JSON.stringify(regions); %>
+  </span>
+  <span id="subRegionsJSON" hidden>
+    <%= JSON.stringify(subRegions); %>
+  </span>
+  <span id="attributesJSON" hidden>
+    <%= JSON.stringify(attributes); %>
+  </span>
+  <script type="application/javascript" src="/scripts/helpCenterViewScript.js"></script>
+</div>
+<%- include('partials/Footer') %>

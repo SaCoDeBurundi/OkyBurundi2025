@@ -1,0 +1,71 @@
+{
+  "name": "oky",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "validate:lotties": "ts-node validateLotties.ts",
+    "validate:images": "yarn add sharp@0.28.3 && ts-node validateImages.ts",
+    "remove-unused-assets": "ts-node removeUnusedAssets.ts",
+    "generate-sql": "ts-node --transpile-only generateSQL.ts",
+    "provinces": "ts-node --transpile-only merge-provinces.ts",
+    "countries": "ts-node --transpile-only merge-countries.ts",
+    "fetch-content": "ts-node --transpile-only fetchContent.ts",
+    "database-sync:enable": "ts-node setDatabaseSync.ts --enable",
+    "database-sync:disable": "ts-node setDatabaseSync.ts --disable",
+    "rm": "yarn workspaces run rm && yarn rm:app && yarn cache clean && rm -rf node_modules",
+    "rm:docker": "docker stop $(docker ps -q); docker system prune -a",
+    "rm:app": "if [ -z \"$DOCKER_ENV\" ]; then cd app && yarn rm; fi",
+    "reinstall": "yarn run rm && yarn",
+    "clean": "yarn workspaces run clean",
+    "compile": "yarn workspace @oky/core compile && yarn workspaces run compile",
+    "dev": "yarn run clean && yarn run compile && concurrently --kill-others \"docker-compose up\"",
+    "dev:app": "cd app && npx expo start -c",
+    "prod:web": "docker-compose -f docker-compose.yml build && docker-compose -f docker-compose.yml up",
+    "format": "yarn workspaces run format",
+    "lint": "yarn workspaces run lint",
+    "test": "yarn workspaces run test && yarn test:app",
+    "test:app": "cd app && yarn test",
+    "test:all": "yarn run test:saga && yarn run test:prediction-engine",
+    "test:saga": "yarn workspace @oky/components run test",
+    "test:prediction-engine": "yarn workspace @oky/core run test",
+    "reverse:all-ports": "adb reverse tcp:3000 tcp:3000 && adb reverse tcp:5000 tcp:5000 && adb reverse tcp:8000 tcp:8000 && adb reverse tcp:8080 tcp:8080 && adb reverse tcp:8081 tcp:8081",
+    "deploy:k8s": "yarn test && ./.k8s/deploy-k8s.sh",
+    "modules": "./bin/modules/remove.sh && ./bin/modules/pull.sh && yarn copy-eas",
+    "modules:checkout": "./bin/modules/checkout.sh",
+    "copy-config": "./bin/setup/config.sh",
+    "copy-eas": "./bin/setup/eas.sh",
+    "postinstall": "if [ -z \"$DOCKER_ENV\" ]; then cd app && yarn; fi"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "devDependencies": {
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "patch-package": "^6.1.4",
+    "postinstall-postinstall": "^2.0.0",
+    "prettier": "2.0.5",
+    "ts-node": "^10.4.0",
+    "tslint": "^5.17.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "fs-extra": "^11.1.1",
+    "lottie-parser": "^0.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx} -e \"app\"": [
+      "tslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
