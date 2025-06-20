@@ -84,7 +84,7 @@ Execute the following SQL to create a CMS user with the following credentials:
 
 ```sql
 INSERT INTO "periodtracker"."user" ("id", "username", "password", "lang", "date_created", "type")
-VALUES (-1, 'admin', '$2b$10$cslKchhKRBsWG.dCsspbb.mkY9.opLl1t1Oxs3j2E01/Zm3llW/Rm', 'en', NOW(), 'superAdmin');
+VALUES (-1, 'admin', '$2b$10$cslKchhKRBsWG.dCsspbb.mkY9.opLl1t1Oxs3j2E01/Zm3llW/Rm', 'bi', NOW(), 'superAdmin');
 ```
 
 > IMPORTANT: Once you have created this user, log into the CMS, use the `/user-management` page to create a new user with a strong password, log out, log in as your new user, and delete this non-secure `Admin` user

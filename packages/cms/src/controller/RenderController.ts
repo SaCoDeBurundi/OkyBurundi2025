@@ -230,7 +230,7 @@ export class RenderController {
     return {
       answeredSurveys: answeredSurveys.map((e: any) => {
         const countryOb = countries[e.country]
-        const country = countryOb ? countryOb[request.user.lang] || countryOb.en : ''
+        const country = countryOb ? countryOb[request.user.lang] || countryOb.bi : ''
         return { ...e, country }
       }),
     }
