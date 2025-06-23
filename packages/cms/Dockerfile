@@ -1,5 +1,5 @@
 # Development stage
-# FROM --platform=linux/amd64 oky/base as development
+FROM --platform=linux/amd64 oky/base AS development
 FROM oky/base AS development
 
 ENV NODE_ENV=development
