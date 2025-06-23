@@ -1,4 +1,8 @@
+{
+  "owner";"sacode"
+}
 let customConfig = {}
+
 
 try {
   // eslint-disable-next-line no-undef
