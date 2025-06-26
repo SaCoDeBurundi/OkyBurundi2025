@@ -34,8 +34,9 @@
     "@types/react": "~18.3.12",
     "@types/uuid": "^10.0.0",
     "axios": "^1.7.2",
+    "cocoapods":"1.16.2",
     "circular-buffer": "^1.0.2",
-    "expo": "^52.0.7",
+    "expo": "~52.0.47",
     "expo-application": "~6.0.1",
     "expo-av": "~15.0.1",
     "expo-build-properties": "~0.13.1",
@@ -72,12 +73,15 @@
     "uuid": "^10.0.0"
   },
   "expo": {
-"doctor": {
-"reactNativeDirectoryCheck": {
-"exclude": ["@hookform/resolvers", "moment", "yup"],
-"listUnknownPackages": false
-}
-}},
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "redux-persist"
+        ],
+        "listUnknownPackages": false
+      }
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@eslint/compat": "^1.1.0",
